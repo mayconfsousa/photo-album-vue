@@ -8,28 +8,13 @@
         </button>
       </div>
       <ul id="album-list" class="nav flex-column">
-        <li class="nav-item" v-for="album in albums" v-bind:key="album.id">
-          <a class="nav-link" href="#">{{album.name}}</a>
+        <li class="nav-item" v-for="album in $store.state.albums" v-bind:key="album.id">
+          <a class="nav-link" href="#" @click="$store.commit('selectAlbum', album.id)">{{album.name}}</a>
         </li>
       </ul>
     </nav>
   </aside>
 </template>
-
-<script>
-import _ from 'lodash';
-
-export default {
-  data() {
-    const albums = _.times(10).map(i => ({
-      id: i + 1,
-      name: `Album ${i + 1}`
-    }));
-
-    return { albums };
-  }
-};
-</script>
 
 <style scoped>
 #sidebar {
