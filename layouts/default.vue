@@ -17,7 +17,6 @@ export default {
 
 <style>
 body {
-  font-family: 'Rubik';
   background: #fafafa;
 }
 </style>

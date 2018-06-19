@@ -8,22 +8,28 @@
         </button>
       </div>
       <ul id="album-list" class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Album 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Album 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Album 3</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Album 4</a>
+        <li class="nav-item" v-for="album in albums" v-bind:key="album.id">
+          <a class="nav-link" href="#">{{album.name}}</a>
         </li>
       </ul>
     </nav>
   </aside>
 </template>
+
+<script>
+import _ from 'lodash';
+
+export default {
+  data() {
+    const albums = _.times(10).map(i => ({
+      id: i + 1,
+      name: `Album ${i + 1}`
+    }));
+
+    return { albums };
+  }
+};
+</script>
 
 <style scoped>
 #sidebar {

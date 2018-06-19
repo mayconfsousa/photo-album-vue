@@ -8,29 +8,7 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Rubik'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css'
-      }
-    ],
-    script: [
-      {
-        src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js'
-      },
-      {
-        src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'
-      }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   /*
@@ -54,6 +32,10 @@ module.exports = {
           exclude: /(node_modules)/
         });
       }
-    }
-  }
+    },
+
+    vendor: ['bootstrap']
+  },
+
+  css: ['bootstrap/dist/css/bootstrap.min.css', 'font-awesome/css/font-awesome.min.css']
 };
