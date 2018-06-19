@@ -1,9 +1,22 @@
 <template>
-  <div id="album-grid" class="d-flex justify-content-between flex-wrap">
-    <div class="item" v-for="photo in photos" v-bind:key="photo.id">
-      <img v-bind:src="photo.src" alt="">
+  <transition name="slide-fade">
+    <div v-if="!$store.state.searchMode">
+      <!-- Album Header -->
+      <div class="form-group d-flex justify-content-between">
+        <h3>Album 1</h3>
+        <button class="btn btn-primary btn--rounded" @click="$store.commit('toggleSearchBoxMode')">
+          <i class="fa fa-plus" />
+        </button>
+      </div>
+
+      <!-- Album Grid -->
+      <div id="album-grid" class="d-flex justify-content-between flex-wrap">
+        <div class="item" v-for="photo in photos" v-bind:key="photo.id">
+          <img v-bind:src="photo.src" alt="">
+        </div>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>

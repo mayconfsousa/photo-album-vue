@@ -38,5 +38,7 @@ module.exports = {
     vendor: ['bootstrap']
   },
 
+  plugins: ['~/plugins/vue-directives.js'],
+
   css: ['bootstrap/dist/css/bootstrap.min.css', 'font-awesome/css/font-awesome.min.css']
 };

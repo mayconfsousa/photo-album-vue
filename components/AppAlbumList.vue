@@ -3,7 +3,7 @@
     <nav id="sidebar">
       <div id="sidebar-header" class="d-flex justify-content-between">
         <h3>Albums</h3>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary btn--rounded">
           <i class="fa fa-plus" />
         </button>
       </div>
@@ -44,13 +44,6 @@ export default {
 
 #sidebar-header {
   padding: 10px;
-}
-
-#sidebar-header .btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  border: 0;
 }
 
 #album-list {
