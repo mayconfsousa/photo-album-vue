@@ -1,10 +1,10 @@
 # photo-album-vue
 
-> Nuxt.js project
+> Photo Album Vue!
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ npm install # Or yarn install
 

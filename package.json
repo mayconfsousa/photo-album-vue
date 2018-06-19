@@ -1,7 +1,7 @@
 {
   "name": "photo-album-vue",
   "version": "1.0.0",
-  "description": "Nuxt.js project",
+  "description": "Photo Album Vue!",
   "author": "Maycon Sousa <mayconfsousa@gmail.com>",
   "private": true,
   "scripts": {
