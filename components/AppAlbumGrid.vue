@@ -13,7 +13,7 @@ export default {
   data() {
     const photos = _.times(20).map(i => ({
       id: i + 1,
-      src: `http://via.placeholder.com/300x300/00897B/fff&text=AFE IMAGE ${i + 1}`
+      src: 'https://dummyimage.com/300x300/00897B/fff'
     }));
 
     return { photos };
