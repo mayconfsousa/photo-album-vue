@@ -19,7 +19,7 @@ export const state = () => ({
 export const mutations = {
   toggleSearchBoxMode(state) {
     state.searchMode = !state.searchMode;
-    state.sidebarVisible = !state.searchMode;
+    if (state.searchMode) state.sidebarVisible = false;
   },
   toggleSidebar(state) {
     state.sidebarVisible = !state.sidebarVisible;
