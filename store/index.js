@@ -5,7 +5,7 @@ const albums = _.times(5).map(i => ({
   name: `Album ${i + 1}`,
   photos: _.times(_.random(1, 20)).map(j => ({
     id: j + 1,
-    src: 'https://dummyimage.com/1024x768/00897b/fff'
+    src: `https://dummyimage.com/1024x768/00897b/fff&text=Image${j + 1}`
   }))
 }));
 
