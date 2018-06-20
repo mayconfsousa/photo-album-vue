@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="/">
         <img src="/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">Photo Album
       </a>
-      <button class="navbar-toggler" type="button" @click="$store.commit('toggleSidebar')">
+      <button class="navbar-toggler" type="button" @click="$store.commit('toggleSidebar')" aria-label="Toggle navigation">
         <i class="fa fa-bars" />
       </button>
     </nav>

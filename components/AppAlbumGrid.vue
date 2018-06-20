@@ -6,7 +6,7 @@
         <!-- Album Header -->
         <div class="form-group d-flex justify-content-between">
           <h3>{{$store.state.selectedAlbum.name}}</h3>
-          <button class="btn btn-primary btn--rounded" @click="$store.commit('toggleSearchBoxMode')">
+          <button class="btn btn-primary btn--rounded" @click="$store.commit('toggleSearchBoxMode')" aria-label="Enable search mode">
             <i class="fa fa-plus" />
           </button>
         </div>

@@ -3,7 +3,7 @@
     <nav id="sidebar" :class="{show: $store.state.sidebarVisible}">
       <div id="sidebar-header" class="d-flex justify-content-between">
         <h3>Albums</h3>
-        <button class="btn btn-primary btn--rounded">
+        <button class="btn btn-primary btn--rounded" aria-label="Add new album">
           <i class="fa fa-plus" />
         </button>
       </div>
