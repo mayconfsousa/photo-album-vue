@@ -26,5 +26,6 @@ export const mutations = {
   },
   selectAlbum(state, albumId) {
     state.selectedAlbum = state.albums.filter(a => a.id === albumId)[0];
+    state.sidebarVisible = false;
   }
 };

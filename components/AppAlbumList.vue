@@ -50,7 +50,7 @@ a:focus {
   transition: all 0.3s;
 }
 
-#album-list a:hover {
+#album-list li:hover {
   background: #e0e0e0;
 }
 
