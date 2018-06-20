@@ -10,7 +10,7 @@
       </div>
 
       <!-- Album Grid -->
-      <div id="album-grid" class="d-flex justify-content-between flex-wrap">
+      <div id="album-grid" class="d-flex justify-content-between flex-wrap" v-viewer>
         <div class="item" v-for="photo in $store.state.selectedAlbum.photos" :key="photo.id">
           <img :src="photo.src" alt="">
         </div>
@@ -28,6 +28,11 @@
 #album-grid .item {
   width: 20%;
   padding: 3px;
+}
+
+#album-grid .item:hover,
+#album-grid .item:focus {
+  cursor: pointer;
 }
 
 #album-grid .item img {
