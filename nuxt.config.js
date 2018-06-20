@@ -41,6 +41,8 @@ module.exports = {
     vendor: ['bootstrap']
   },
 
+  modules: ['@nuxtjs/pwa'],
+
   plugins: ['~/plugins/vue-plugins.js'],
 
   css: [
