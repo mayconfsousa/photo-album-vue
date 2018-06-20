@@ -11,8 +11,8 @@
 
       <!-- Album Grid -->
       <div id="album-grid" class="d-flex justify-content-between flex-wrap">
-        <div class="item" v-for="photo in $store.state.selectedAlbum.photos" v-bind:key="photo.id">
-          <img v-bind:src="photo.src" alt="">
+        <div class="item" v-for="photo in $store.state.selectedAlbum.photos" :key="photo.id">
+          <img :src="photo.src" alt="">
         </div>
       </div>
     </div>
@@ -32,6 +32,12 @@
 
 #album-grid .item img {
   width: 100%;
+}
+
+@media (max-width: 992px) {
+  #album-grid .item {
+    width: calc(100% / 4);
+  }
 }
 
 @media (max-width: 768px) {
