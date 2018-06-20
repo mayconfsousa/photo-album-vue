@@ -69,7 +69,7 @@ a:focus {
     min-width: 75%;
     max-width: 75%;
     position: fixed;
-    z-index: 1;
+    z-index: 4;
   }
 
   #sidebar.show {

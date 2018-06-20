@@ -24,6 +24,9 @@ export const mutations = {
   toggleSidebar(state) {
     state.sidebarVisible = !state.sidebarVisible;
   },
+  hideSidebar(state) {
+    state.sidebarVisible = false;
+  },
   selectAlbum(state, albumId) {
     state.selectedAlbum = state.albums.filter(a => a.id === albumId)[0];
     state.sidebarVisible = false;
