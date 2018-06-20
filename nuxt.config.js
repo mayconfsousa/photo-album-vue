@@ -43,6 +43,13 @@ module.exports = {
 
   modules: ['@nuxtjs/pwa'],
 
+  manifest: {
+    name: 'Photo Album Vue!',
+    short_name: 'Photo Album',
+    background_color: '#fafafa',
+    theme_color: '#007bff'
+  },
+
   plugins: ['~/plugins/vue-plugins.js'],
 
   css: [
