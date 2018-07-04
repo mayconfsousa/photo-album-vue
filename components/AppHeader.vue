@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="/">
-        <img src="/icon.png" width="30" height="30" class="d-inline-block align-top" alt="">Photo Album
+        <img src="/app_icon.png" width="30" height="30" class="d-inline-block align-top" alt="">Photo Album
       </a>
       <button class="navbar-toggler" type="button" @click="$store.commit('toggleSidebar')" aria-label="Toggle navigation">
         <i class="fa fa-bars" />
