@@ -6,11 +6,50 @@
 </template>
 
 <script>
+import getAlbums from '~/api';
+
 import AppHeader from '~/components/AppHeader';
 
 export default {
   components: {
     AppHeader
+  },
+  mounted() {
+    this.renderGoogleSignInButton();
+    this.$root.$on('signOut', this.onSignOut);
+  },
+  methods: {
+    renderGoogleSignInButton() {
+      window.gapi.signin2.render('google-signin-btn', {
+        scope: 'profile email https://www.googleapis.com/auth/photoslibrary.readonly',
+        width: 200,
+        height: 50,
+        longtitle: true,
+        theme: 'dark',
+        onsuccess: this.onSignIn
+      });
+    },
+    onSignIn(googleUser) {
+      const profile = googleUser.getBasicProfile();
+      const { access_token } = googleUser.getAuthResponse(true);
+      this.$store.commit('signIn', { profile, access_token });
+
+      this.$nextTick(async () => {
+        this.$nuxt.$loading.start();
+
+        const albums = await getAlbums(access_token);
+        this.$store.commit('setAlbums', albums);
+
+        this.$nuxt.$loading.finish();
+      });
+    },
+    onSignOut() {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      auth2.signOut().then(() => {
+        this.$store.commit('signOut');
+        setTimeout(this.renderGoogleSignInButton, 500);
+      });
+    }
   }
 };
 </script>

@@ -13,8 +13,8 @@
 
         <!-- Album Grid -->
         <div id="album-grid" class="d-flex justify-content-between flex-wrap" v-viewer>
-          <div class="item" v-for="photo in $store.state.selectedAlbum.photos" :key="photo.id">
-            <img :src="photo.src" alt="">
+          <div class="item" v-for="mediaItem in $store.state.selectedAlbum.mediaItems" :key="mediaItem.id">
+            <img :src="mediaItem.baseUrl" alt="">
           </div>
         </div>
       </div>

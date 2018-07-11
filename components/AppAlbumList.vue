@@ -10,7 +10,13 @@
       <ul id="album-list" class="nav flex-column">
         <li class="nav-item d-flex align-items-center" :class="{active: $store.state.selectedAlbum.id === album.id}" v-for="album in $store.state.albums" :key="album.id">
           <i class="fa fa-image" />
-          <a class="nav-link" href="#" @click="$store.commit('selectAlbum', album.id)">{{album.name}}</a>
+          <a class="nav-link" href="#" @click="$store.commit('selectAlbum', album.id)">{{album.title}}</a>
+        </li>
+      </ul>
+      <ul id="settings-list" class="nav flex-column">
+        <li class="nav-item d-flex align-items-center">
+          <i class="fa fa-sign-out" />
+          <a class="nav-link" href="#" @click="$root.$emit('signOut')">Sign Out</a>
         </li>
       </ul>
     </nav>
@@ -37,20 +43,31 @@
   padding-bottom: 20px;
 }
 
-#album-list li {
+#settings-list {
+  padding-top: 20px;
+}
+
+#album-list li,
+#settings-list li {
   padding-left: 10px;
 }
 
 #album-list a,
 #album-list i,
-a:hover,
-a:focus {
+#settings-list a,
+#settings-list i {
   color: #424242;
   text-decoration: none;
   transition: all 0.3s;
 }
 
-#album-list li:hover {
+#album-list a,
+#settings-list a {
+  width: 100%;
+}
+
+#album-list li:hover,
+#settings-list li:hover {
   background: #e0e0e0;
 }
 

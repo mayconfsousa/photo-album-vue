@@ -18,6 +18,7 @@ module.exports = {
   plugins: ['vue'],
   // add your custom rules here
   rules: {
-    'prettier/prettier': ['error', { singleQuote: true, printWidth: 100 }]
+    'prettier/prettier': ['error', { singleQuote: true, printWidth: 100 }],
+    'no-console': 0
   }
 };

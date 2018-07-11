@@ -10,9 +10,14 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Photo Album Vue!' }
+      { hid: 'description', name: 'description', content: 'Photo Album Vue!' },
+      {
+        name: 'google-signin-client_id',
+        content: '187910410871-mplu411oihsru3n0jkg3hh5l0ugoramn.apps.googleusercontent.com'
+      }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [{ src: 'https://apis.google.com/js/platform.js' }]
   },
 
   /*
@@ -37,8 +42,7 @@ module.exports = {
         });
       }
     },
-
-    vendor: ['bootstrap']
+    vendor: ['bootstrap', 'lodash', 'axios']
   },
 
   modules: ['@nuxtjs/pwa'],

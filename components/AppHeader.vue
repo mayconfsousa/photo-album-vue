@@ -4,6 +4,7 @@
       <a class="navbar-brand" href="/">
         <img src="/app_icon.png" width="30" height="30" class="d-inline-block align-top" alt="">Photo Album
       </a>
+      <div>{{$store.state.user.name}}</div>
       <button class="navbar-toggler" type="button" @click="$store.commit('toggleSidebar')" aria-label="Toggle navigation">
         <i class="fa fa-bars" />
       </button>

@@ -1,11 +1,14 @@
 <template>
-  <section class="container-fluid d-flex p-0">
-    <app-album-list/>
-    <section id="content" class="d-flex flex-column">
-      <app-search-box/>
-      <app-album-grid/>
+  <div>
+    <div id="google-signin-btn" v-if="!$store.state.loggedIn"></div>
+    <section class="container-fluid d-flex p-0" v-else>
+      <app-album-list/>
+      <section id="content" class="d-flex flex-column">
+        <app-search-box/>
+        <app-album-grid/>
+      </section>
     </section>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -20,12 +23,7 @@ export default {
     AppAlbumGrid
   },
   mounted() {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start();
-      setTimeout(() => this.$nuxt.$loading.finish(), 500);
-
-      window.addEventListener('resize', () => this.$store.commit('hideSidebar'));
-    });
+    window.addEventListener('resize', () => this.$store.commit('hideSidebar'));
   }
 };
 </script>
@@ -39,5 +37,12 @@ export default {
 #content {
   padding: 20px;
   flex: 1;
+}
+
+#google-signin-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>
