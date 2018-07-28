@@ -12,7 +12,7 @@ import AppHeader from '~/components/AppHeader';
 
 export default {
   components: {
-    AppHeader
+    AppHeader,
   },
   mounted() {
     this.renderGoogleSignInButton();
@@ -26,7 +26,7 @@ export default {
         height: 50,
         longtitle: true,
         theme: 'dark',
-        onsuccess: this.onSignIn
+        onsuccess: this.onSignIn,
       });
     },
     onSignIn(googleUser) {
@@ -49,8 +49,8 @@ export default {
         this.$store.commit('signOut');
         setTimeout(this.renderGoogleSignInButton, 500);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

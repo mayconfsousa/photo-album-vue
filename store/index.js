@@ -15,7 +15,7 @@ export const state = () => ({
   loggedIn: false,
   user: {},
   selectedAlbum: {},
-  albums: []
+  albums: [],
 });
 
 export const mutations = {
@@ -43,5 +43,5 @@ export const mutations = {
   signOut(state) {
     state.loggedIn = false;
     state.user = {};
-  }
+  },
 };

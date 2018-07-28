@@ -5,6 +5,6 @@ Vue.use(Viewer, {
   defaultOptions: {
     title: false,
     movable: false,
-    fullscreen: false
-  }
+    fullscreen: false,
+  },
 });

@@ -20,11 +20,11 @@ export default {
   components: {
     AppAlbumList,
     AppSearchBox,
-    AppAlbumGrid
+    AppAlbumGrid,
   },
   mounted() {
     window.addEventListener('resize', () => this.$store.commit('hideSidebar'));
-  }
+  },
 };
 </script>
 
