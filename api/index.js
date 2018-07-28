@@ -3,14 +3,12 @@ import axios from 'axios';
 export default async function getAlbums(access_token) {
   const options = {
     headers: {
-      Authorization: `Bearer ${access_token}`
-    }
+      Authorization: `Bearer ${access_token}`,
+    },
   };
 
   const res = await axios.get('https://photoslibrary.googleapis.com/v1/albums', options);
   let { albums } = res.data;
-
-  albums.splice(1, 1); // TODO: TESTE
 
   albums = await Promise.all(
     albums.map(
@@ -26,7 +24,7 @@ export default async function getAlbums(access_token) {
               {
                 pageSize: 500,
                 albumId: album.id,
-                pageToken
+                pageToken,
               },
               options
             );
