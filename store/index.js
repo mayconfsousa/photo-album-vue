@@ -1,14 +1,3 @@
-// import _ from 'lodash';
-
-// const albums = _.times(5).map(i => ({
-//   id: i + 1,
-//   title: `Album ${i + 1}`,
-//   photos: _.times(_.random(1, 20)).map(j => ({
-//     id: j + 1,
-//     src: `https://dummyimage.com/300x300/00897b/fff&text=Image${j + 1}`
-//   }))
-// }));
-
 export const state = () => ({
   sidebarVisible: false,
   searchMode: false,
