@@ -4,8 +4,8 @@
     <transition name="slide-fade">
       <div v-if="!$store.state.searchMode">
         <!-- Album Header -->
-        <div class="form-group d-flex justify-content-between">
-          <h3>{{$store.state.selectedAlbum.name}}</h3>
+        <div class="form-group d-flex justify-content-between" v-if="!!$store.state.selectedAlbum.id">
+          <h4>{{$store.state.selectedAlbum.title}}</h4>
           <button class="btn btn-primary btn--rounded" @click="$store.commit('toggleSearchBoxMode')" aria-label="Enable search mode">
             <i class="fa fa-plus" />
           </button>

@@ -2,11 +2,11 @@
   <div>
     <div id="google-signin-btn" v-if="!$store.state.loggedIn"></div>
     <section class="container-fluid d-flex p-0" v-else>
-      <app-album-list/>
-      <app-album-create/>
+      <app-album-list />
+      <app-album-create />
       <section id="content" class="d-flex flex-column">
-        <app-search-box/>
-        <app-album-grid/>
+        <app-search-box />
+        <app-album-grid />
       </section>
     </section>
   </div>

@@ -50,7 +50,10 @@ const getAlbums = async access_token => {
  */
 const createAlbum = async (access_token, albumTitle) => {
   const options = getOptions(access_token);
-  return await axios.post(URL_ALBUMS, { album: { title: albumTitle } }, options);
+  const res = await axios.post(URL_ALBUMS, { album: { title: albumTitle } }, options);
+  const album = res.data;
+  album.mediaItems = [];
+  return album;
 };
 
 /**

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const state = () => ({
   sidebarVisible: false,
   searchMode: false,
@@ -24,6 +26,10 @@ export const mutations = {
   },
   setAlbums(state, albums) {
     state.albums = albums;
+  },
+  pushAlbum(state, album) {
+    state.albums.push(album);
+    state.albums = _.sortBy(state.albums, 'title');
   },
   signIn(state, { profile, access_token }) {
     state.loggedIn = true;
