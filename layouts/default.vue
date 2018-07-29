@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import getAlbums from '~/api';
+import { getAlbums } from '~/api';
 
 import AppHeader from '~/components/AppHeader';
 
@@ -21,7 +21,8 @@ export default {
   methods: {
     renderGoogleSignInButton() {
       window.gapi.signin2.render('google-signin-btn', {
-        scope: 'profile email https://www.googleapis.com/auth/photoslibrary.readonly',
+        scope:
+          'profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.appendonly https://www.googleapis.com/auth/photoslibrary.sharing',
         width: 200,
         height: 50,
         longtitle: true,
@@ -33,7 +34,16 @@ export default {
       const profile = googleUser.getBasicProfile();
       const { access_token } = googleUser.getAuthResponse(true);
       this.$store.commit('signIn', { profile, access_token });
-
+      this.getAlbums(access_token);
+    },
+    onSignOut() {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      auth2.signOut().then(() => {
+        this.$store.commit('signOut');
+        setTimeout(this.renderGoogleSignInButton, 500);
+      });
+    },
+    getAlbums(access_token) {
       this.$nextTick(async () => {
         this.$nuxt.$loading.start();
 
@@ -41,13 +51,6 @@ export default {
         this.$store.commit('setAlbums', albums);
 
         this.$nuxt.$loading.finish();
-      });
-    },
-    onSignOut() {
-      const auth2 = window.gapi.auth2.getAuthInstance();
-      auth2.signOut().then(() => {
-        this.$store.commit('signOut');
-        setTimeout(this.renderGoogleSignInButton, 500);
       });
     },
   },

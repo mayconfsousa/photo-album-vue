@@ -3,6 +3,7 @@
     <div id="google-signin-btn" v-if="!$store.state.loggedIn"></div>
     <section class="container-fluid d-flex p-0" v-else>
       <app-album-list/>
+      <app-album-create/>
       <section id="content" class="d-flex flex-column">
         <app-search-box/>
         <app-album-grid/>
@@ -15,12 +16,14 @@
 import AppAlbumList from '~/components/AppAlbumList';
 import AppSearchBox from '~/components/AppSearchBox';
 import AppAlbumGrid from '~/components/AppAlbumGrid';
+import AppAlbumCreate from '~/components/AppAlbumCreate';
 
 export default {
   components: {
     AppAlbumList,
     AppSearchBox,
     AppAlbumGrid,
+    AppAlbumCreate,
   },
   mounted() {
     window.addEventListener('resize', () => this.$store.commit('hideSidebar'));
