@@ -39,7 +39,7 @@ export default {
   methods: {
     toggleSelectedItem(mediaItem) {
       if (this.isSelected(mediaItem))
-        this.selectedPhotos = _.filter(this.selectedPhotos, item => item.id !== mediaItem.id);
+        this.selectedPhotos = this.selectedPhotos.filter(item => item.id !== mediaItem.id);
       else this.selectedPhotos.push(mediaItem);
     },
     isSelected(mediaItem) {

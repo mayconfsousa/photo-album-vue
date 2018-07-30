@@ -54,7 +54,8 @@ const createStore = () => {
         state.albums.push({ id: uuid(), title: albumTitle, mediaItems: [] });
       },
       removeAlbum(state, albumId) {
-        _.remove(state.albums, album => album.id === albumId);
+        state.albums = state.albums.filter(album => album.id !== albumId);
+        state.selectedAlbum = {};
       },
       updateAlbumPhotos(state, { albumId, mediaItems }) {
         const albumIndex = _.findIndex(state.albums, album => album.id === albumId);

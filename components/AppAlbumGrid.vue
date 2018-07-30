@@ -6,9 +6,15 @@
         <!-- Album Header -->
         <div class="form-group d-flex justify-content-between" v-if="!!$store.state.selectedAlbum.id">
           <h4>{{$store.state.selectedAlbum.title}}</h4>
-          <button class="btn btn-primary btn--rounded" @click="$store.commit('toggleSearchBoxMode')" aria-label="Enable search mode">
-            <i class="fa fa-plus" />
-          </button>
+          <div>
+            <button class="btn btn-primary btn--rounded" @click="$store.commit('toggleSearchBoxMode')" aria-label="Enable search mode">
+              <i class="fa fa-plus" />
+            </button>
+            &nbsp;
+            <button class="btn btn-danger btn--rounded" @click="removeAlbum()" aria-label="Enable search mode">
+              <i class="fa fa-remove" />
+            </button>
+          </div>
         </div>
 
         <!-- Album Grid -->
@@ -21,6 +27,17 @@
     </transition>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    removeAlbum() {
+      this.$store.commit('removeAlbum', this.$store.state.selectedAlbum.id);
+    },
+  },
+};
+</script>
+
 
 <style scoped>
 #album-grid:after {
