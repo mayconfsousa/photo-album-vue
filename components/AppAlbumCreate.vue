@@ -26,8 +26,6 @@
 <script>
 import $ from 'jquery';
 
-import { createAlbum } from '~/api';
-
 export default {
   data() {
     return { albumTitle: '' };
@@ -42,11 +40,7 @@ export default {
       this.$nextTick(async () => {
         this.$nuxt.$loading.start();
 
-        const { access_token } = this.$store.state.user;
-
-        // Create album
-        const album = await createAlbum(access_token, this.albumTitle);
-        this.$store.commit('pushAlbum', album);
+        this.$store.commit('addAlbum', this.albumTitle);
 
         this.$nuxt.$loading.finish();
       });

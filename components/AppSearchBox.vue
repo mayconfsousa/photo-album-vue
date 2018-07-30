@@ -15,8 +15,8 @@
 
         <!-- Add Photos Grid -->
         <div id="album-grid" class="d-flex justify-content-between flex-wrap">
-          <div class="item" v-for="(mediaItem, index) in $store.state.mediaItems" :key="index" @click="toggleSelectedItem(mediaItem.baseUrl)">
-            <img :src="mediaItem.baseUrl" alt="" :class="{selected: isSelected(mediaItem.baseUrl)}">
+          <div class="item" v-for="(mediaItem, index) in $store.state.mediaItems" :key="index" @click="toggleSelectedItem(mediaItem)">
+            <img :src="mediaItem.baseUrl" alt="" :class="{selected: isSelected(mediaItem)}">
           </div>
         </div>
       </div>
@@ -27,36 +27,36 @@
 <script>
 import _ from 'lodash';
 
-import { addImagesToAlbum } from '~/api';
-
 export default {
   data() {
     return { selectedPhotos: [] };
   },
+  updated() {
+    if (this.selectedPhotos.length === 0) {
+      this.selectedPhotos = this.$store.state.selectedAlbum.mediaItems;
+    }
+  },
   methods: {
-    toggleSelectedItem(mediaItemUrl) {
-      if (this.isSelected(mediaItemUrl))
-        this.selectedPhotos = _.remove(this.selectedPhotos, mediaItemUrl);
-      else this.selectedPhotos.push(mediaItemUrl);
+    toggleSelectedItem(mediaItem) {
+      if (this.isSelected(mediaItem))
+        this.selectedPhotos = _.filter(this.selectedPhotos, item => item.id !== mediaItem.id);
+      else this.selectedPhotos.push(mediaItem);
     },
-    isSelected(mediaItemUrl) {
-      return _.includes(this.selectedPhotos, mediaItemUrl);
+    isSelected(mediaItem) {
+      return _.includes(this.selectedPhotos, mediaItem);
     },
     cancel() {
       this.selectedPhotos = [];
       this.$store.commit('toggleSearchBoxMode');
     },
     save() {
-      console.log('save', this.selectedPhotos);
-
       this.$nextTick(async () => {
         this.$nuxt.$loading.start();
 
-        const { access_token } = this.$store.state.user;
-
-        // Add photos to album
-        addImagesToAlbum(access_token, this.selectedPhotos, this.$store.state.selectedAlbum.id);
-        // this.$store.commit('pushAlbum', album);
+        this.$store.commit('updateAlbumPhotos', {
+          albumId: this.$store.state.selectedAlbum.id,
+          mediaItems: this.selectedPhotos,
+        });
 
         this.selectedPhotos = [];
         this.$store.commit('toggleSearchBoxMode');

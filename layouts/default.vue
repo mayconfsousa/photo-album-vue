@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { getAlbums, getMediaItems } from '~/api';
+import { getAllMediaItems } from '~/api';
 
 import AppHeader from '~/components/AppHeader';
 
@@ -15,6 +15,7 @@ export default {
     AppHeader,
   },
   mounted() {
+    this.$store.commit('initializeStore');
     this.renderGoogleSignInButton();
     this.$root.$on('signOut', this.onSignOut);
   },
@@ -43,18 +44,14 @@ export default {
         setTimeout(this.renderGoogleSignInButton, 500);
       });
     },
-    async getAlbums(access_token) {
-      const albums = await getAlbums(access_token);
-      this.$store.commit('setAlbums', albums);
-    },
-    async getMediaItems(access_token) {
-      const mediaItems = await getMediaItems(access_token);
+    async getAllMediaItems(access_token) {
+      const mediaItems = await getAllMediaItems(access_token);
       this.$store.commit('setMediaItems', mediaItems);
     },
     getInitialData(access_token) {
       this.$nextTick(async () => {
         this.$nuxt.$loading.start();
-        await Promise.all([this.getAlbums(access_token), this.getMediaItems(access_token)]);
+        if (this.$store.state.mediaItems.length === 0) await this.getAllMediaItems(access_token);
         this.$nuxt.$loading.finish();
       });
     },
