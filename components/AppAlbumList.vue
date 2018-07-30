@@ -8,9 +8,9 @@
         </button>
       </div>
       <ul id="album-list" class="nav flex-column">
-        <li class="nav-item d-flex align-items-center" :class="{active: $store.state.selectedAlbum.id === album.id}" v-for="album in $store.state.albums" :key="album.id">
+        <li class="nav-item d-flex align-items-center" :class="{active: $store.state.selectedAlbum.id === album.id}" v-for="(album, index) in $store.state.albums" :key="index">
           <i class="fa fa-image" />
-          <a class="nav-link" href="#" @click="$store.commit('selectAlbum', album.id)">{{album.title}}</a>
+          <a class="nav-link" href="#" @click="selectAlbum(album.id)">{{album.title}}</a>
         </li>
       </ul>
       <ul id="settings-list" class="nav flex-column">
@@ -22,6 +22,18 @@
     </nav>
   </aside>
 </template>
+
+<script>
+export default {
+  methods: {
+    selectAlbum(albumId) {
+      if (this.$store.state.searchMode) this.$store.commit('toggleSearchBoxMode');
+      this.$store.commit('selectAlbum', albumId);
+    },
+  },
+};
+</script>
+
 
 <style scoped>
 #sidebar {

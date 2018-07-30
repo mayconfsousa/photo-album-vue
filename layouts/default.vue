@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { getAlbums } from '~/api';
+import { getAlbums, getMediaItems } from '~/api';
 
 import AppHeader from '~/components/AppHeader';
 
@@ -34,7 +34,7 @@ export default {
       const profile = googleUser.getBasicProfile();
       const { access_token } = googleUser.getAuthResponse(true);
       this.$store.commit('signIn', { profile, access_token });
-      this.getAlbums(access_token);
+      this.getInitialData(access_token);
     },
     onSignOut() {
       const auth2 = window.gapi.auth2.getAuthInstance();
@@ -43,13 +43,18 @@ export default {
         setTimeout(this.renderGoogleSignInButton, 500);
       });
     },
-    getAlbums(access_token) {
+    async getAlbums(access_token) {
+      const albums = await getAlbums(access_token);
+      this.$store.commit('setAlbums', albums);
+    },
+    async getMediaItems(access_token) {
+      const mediaItems = await getMediaItems(access_token);
+      this.$store.commit('setMediaItems', mediaItems);
+    },
+    getInitialData(access_token) {
       this.$nextTick(async () => {
         this.$nuxt.$loading.start();
-
-        const albums = await getAlbums(access_token);
-        this.$store.commit('setAlbums', albums);
-
+        await Promise.all([this.getAlbums(access_token), this.getMediaItems(access_token)]);
         this.$nuxt.$loading.finish();
       });
     },

@@ -7,6 +7,7 @@ export const state = () => ({
   user: {},
   selectedAlbum: {},
   albums: [],
+  mediaItems: [],
 });
 
 export const mutations = {
@@ -30,6 +31,9 @@ export const mutations = {
   pushAlbum(state, album) {
     state.albums.push(album);
     state.albums = _.sortBy(state.albums, 'title');
+  },
+  setMediaItems(state, mediaItems) {
+    state.mediaItems = mediaItems;
   },
   signIn(state, { profile, access_token }) {
     state.loggedIn = true;
