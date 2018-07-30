@@ -45,7 +45,13 @@ export default {
       });
     },
     async getAllMediaItems(access_token) {
-      const mediaItems = await getAllMediaItems(access_token);
+      const mediaItems = await getAllMediaItems(access_token, items =>
+        this.$store.commit(
+          'changeLoadingText',
+          `${items.length} photos was retrieved from your library. Please wait...`
+        )
+      );
+      this.$store.commit('changeLoadingText');
       this.$store.commit('setMediaItems', mediaItems);
     },
     getInitialData(access_token) {

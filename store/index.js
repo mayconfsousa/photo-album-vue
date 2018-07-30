@@ -10,6 +10,7 @@ const createStore = () => {
       sidebarVisible: false,
       searchMode: false,
       loggedIn: false,
+      loadingText: 'Loading...',
       user: {},
       selectedAlbum: {},
       albums: [],
@@ -31,6 +32,9 @@ const createStore = () => {
       },
       toggleSidebar(state) {
         state.sidebarVisible = !state.sidebarVisible;
+      },
+      changeLoadingText(state, loadingText) {
+        state.loadingText = loadingText || 'Loading...';
       },
       hideSidebar(state) {
         state.sidebarVisible = false;

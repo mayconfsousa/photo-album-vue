@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="loading-page" v-if="loading">
     <img src="/app_icon.png" width="50" height="50" alt="">
-    <p>Loading...</p>
+    <p>{{$store.state.loadingText}}</p>
   </div>
 </template>
 

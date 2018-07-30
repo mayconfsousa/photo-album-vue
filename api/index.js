@@ -18,20 +18,23 @@ const getOptions = access_token => {
 /**
  * Get all media items for album
  * @param {String} access_token API access token
- * @param {Number} albumId Album Id
+ * @param {Function} partialResultCallback Partial result callback (paging)
  */
-const getAllMediaItems = async access_token => {
+const getAllMediaItems = async (access_token, partialResultCallback) => {
   const options = getOptions(access_token);
 
   let mediaItemsResult = [];
   let pageToken = null;
 
   do {
-    const res = await axios.post(URL_MEDIA_ITEMS_SEARCH, { pageSize: 50, pageToken }, options);
-    const { mediaItems /*, nextPageToken*/ } = res.data;
+    const res = await axios.post(URL_MEDIA_ITEMS_SEARCH, { pageSize: 500, pageToken }, options);
+    const { mediaItems, nextPageToken } = res.data;
 
     mediaItemsResult.push(...mediaItems);
-    // pageToken = nextPageToken;
+
+    if (partialResultCallback) partialResultCallback(mediaItemsResult);
+
+    pageToken = nextPageToken;
   } while (pageToken);
 
   return mediaItemsResult;
