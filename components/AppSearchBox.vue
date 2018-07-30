@@ -29,12 +29,10 @@ import _ from 'lodash';
 
 export default {
   data() {
-    return { selectedPhotos: [] };
+    return { selectedAlbumId: null, selectedPhotos: [] };
   },
-  updated() {
-    if (this.selectedPhotos.length === 0) {
-      this.selectedPhotos = this.$store.state.selectedAlbum.mediaItems;
-    }
+  beforeUpdate() {
+    this.refreshSelectedPhotos();
   },
   methods: {
     toggleSelectedItem(mediaItem) {
@@ -43,7 +41,15 @@ export default {
       else this.selectedPhotos.push(mediaItem);
     },
     isSelected(mediaItem) {
-      return _.includes(this.selectedPhotos, mediaItem);
+      return _.findIndex(this.selectedPhotos, item => item.id === mediaItem.id) >= 0;
+    },
+    refreshSelectedPhotos() {
+      const { mediaItems, id } = this.$store.state.selectedAlbum;
+      if (this.selectedPhotos.length === 0 || this.selectedAlbumId !== id) {
+        this.selectedPhotos = mediaItems;
+        this.selectedAlbumId = id;
+      }
+      if (!this.selectedAlbum) this.selectedAlbumId = id;
     },
     cancel() {
       this.selectedPhotos = [];
