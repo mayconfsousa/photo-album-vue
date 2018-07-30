@@ -5,8 +5,8 @@
       <div v-if="$store.state.searchMode">
         <!-- Add Photos Header -->
         <div class="form-group d-flex justify-content-between">
-          <h4>Select the photos to add to the album "{{$store.state.selectedAlbum.title}}"</h4>
-          <div>
+          <h4>Add photos to album "{{$store.state.selectedAlbum.title}}"</h4>
+          <div class="d-flex jusitfy-content-center align-items-center">
             <button class="btn btn-primary" @click="save()" aria-label="Enable search mode">Save</button>
             &nbsp;
             <button class="btn btn-secondary" @click="cancel()" aria-label="Enable search mode">Cancel</button>
