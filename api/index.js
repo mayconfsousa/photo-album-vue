@@ -26,6 +26,12 @@ const getAllMediaItems = async (access_token, partialResultCallback) => {
   let mediaItemsResult = [];
   let pageToken = null;
 
+  /**
+   * FIXME: 'Page count' to limit the photos retrieval.
+   * BUG: Failed to execute 'setItem' on 'Storage': Setting the value of 'photo-album-vue-store' exceeded the quota.
+   */
+  let pageCount = 1;
+
   do {
     const res = await axios.post(URL_MEDIA_ITEMS_SEARCH, { pageSize: 500, pageToken }, options);
     const { mediaItems, nextPageToken } = res.data;
@@ -35,7 +41,8 @@ const getAllMediaItems = async (access_token, partialResultCallback) => {
     if (partialResultCallback) partialResultCallback(mediaItemsResult);
 
     pageToken = nextPageToken;
-  } while (pageToken);
+    pageCount++;
+  } while (pageToken && pageCount <= 2);
 
   return mediaItemsResult;
 };
