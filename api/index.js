@@ -33,7 +33,7 @@ const getAllMediaItems = async (access_token, partialResultCallback) => {
   let pageCount = 1;
 
   do {
-    const res = await axios.post(URL_MEDIA_ITEMS_SEARCH, { pageSize: 500, pageToken }, options);
+    const res = await axios.post(URL_MEDIA_ITEMS_SEARCH, { pageSize: 100, pageToken }, options);
     const { mediaItems, nextPageToken } = res.data;
 
     mediaItemsResult.push(...mediaItems);
